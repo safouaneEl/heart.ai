@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style2.css')}}">
+</head>
+
+<body>
+    <img class="image-gradient" src="{{ url_for('static', filename='images/gradient.png') }}">
+    <div class="layet-blur"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
+
+            <nav class="navbar_header">
+                <a href="#" class=""><b>ACCUEIL</b></a>
+                <a href="#" class=""><b>PRÉDIRE</b></a>
+                <a href="#" class=""><b>RÉSULTAT</b></a>
+            </nav>
+
+            <div class="btn-group">
+                <a href="{{ url_for('signup')}}" class="btn-signing"><b>s'inscrire</b></a>
+                <a href="" class="btn-signing"><b>contactez-nous</b></a>
+            </div>
+
+        </header>
+
+        <main>
+            <div class="content">
+                <div class="tag-box">
+                    <div class="tag"><b>heart.ai</b></div>
+                </div>
+                <h1>Assistant de Prédiction <br> Cardiaque</h1>
+                <p class="description">Utilisez notre outil basé sur l'IA pour prédire <br> votre risque de maladie
+                    cardiaque.</p>
+                <div class="buttons">
+                    <a href="#" class="btn-get-started">commencer</a>
+                </div>
+            </div>
+        </main>
+
+        <spline-viewer class="robot-3d"
+            url="https://prod.spline.design/9xw4BKdY6UIziGms/scene.splinecode"></spline-viewer>
+
+    </div>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.98/build/spline-viewer.js"></script>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2>Pourquoi choisir Heart.AI ?</h2>
+        <div class="features-container">
+            <div class="feature-box">
+                <i class="bi bi-graph-up-arrow" style="font-size: 2rem; color: #6f42c1;"></i>
+                <h3>Prédictions précises</h3>
+                <p>Notre IA analyse plusieurs facteurs de risque pour fournir des prédictions fiables et rapides des
+                    maladies cardiaques.</p>
+            </div>
+            <div class="feature-box">
+                <i class="bi bi-ui-checks-grid" style="font-size: 2rem; color: #6f42c1;"></i>
+                <h3>Facile à utiliser</h3>
+                <p>Interface intuitive conçue pour aider les médecins à évaluer rapidement les risques de santé des
+                    patients.</p>
+            </div>
+            <div class="feature-box">
+                <i class="bi bi-shield-lock" style="font-size: 2rem; color: #6f42c1;"></i>
+                <h3>Données sécurisées</h3>
+                <p>Nous mettons la priorité sur la confidentialité et la sécurité des informations médicales.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="section-content">
+            <h2><i class="bi bi-info-circle-fill"></i> À propos de Heart.AI</h2>
+            <p>Heart.AI est un outil d’assistance médicale conçu pour aider les médecins à détecter précocement les
+                maladies cardiaques grâce à l’apprentissage automatique et à l’analyse de données.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="section-content">
+            <h2><i class="bi bi-envelope-fill"></i> Contactez-nous</h2>
+            <p>Si vous avez des questions, n'hésitez pas à contacter notre équipe :</p>
+            <ul>
+                <li><i class="bi bi-envelope-paper-fill"></i> Email : <a
+                        href="mailto:support@heart.ai">support@heart.ai</a></li>
+                <li><i class="bi bi-telephone-fill"></i> Téléphone : +123 456 7890</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="">
+        <div class="container">
+            <p class="">© 2025 HeartCare Predictor. Tous droits réservés.</p>
+            <small>Créé dans le cadre d’un stage d’intelligence artificielle et développement web.</small>
+        </div>
+    </footer>
+
+</body>
+
+</html>

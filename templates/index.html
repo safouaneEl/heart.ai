@@ -1,56 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Heart Disease Predictor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="display-4">🫀 HeartCare Predictor</h1>
+    <p class="lead">Vérifiez votre risque de maladie cardiaque en quelques clics</p>
 
-<body class="bg-light">
 
-    <div class="container mt-5">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white">
-                <h2 class="mb-0">Heart Disease Prediction</h2>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="/predict" class="row g-3">
-                    {% for field in [
-                    ('age', 'Age'),
-                    ('sex', 'Sex (1 = male, 0 = female)'),
-                    ('cp', 'Chest Pain Type'),
-                    ('trestbps', 'Resting Blood Pressure'),
-                    ('chol', 'Cholesterol'),
-                    ('fbs', 'Fasting Blood Sugar (1 = true, 0 = false)'),
-                    ('restecg', 'Resting ECG'),
-                    ('thalach', 'Max Heart Rate'),
-                    ('exang', 'Exercise Induced Angina'),
-                    ('oldpeak', 'Oldpeak (ST Depression)'),
-                    ('slope', 'Slope of ST Segment'),
-                    ('ca', 'Number of Major Vessels (0-3)'),
-                    ('thal', 'Thalassemia (1 = normal, 2 = fixed defect, 3 = reversible)'),
-                    ] %}
-                    <div class="col-md-6">
-                        <label class="form-label">{{ field[1] }}</label>
-                        <input type="number" step="any" name="{{ field[0] }}" class="form-control" required>
-                    </div>
-                    {% endfor %}
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-success w-100">Predict</button>
-                    </div>
-                </form>
-
-                {% if result %}
-                <div class="alert alert-info mt-4">
-                    <h4>{{ result }}</h4>
-                    <p>Probability: {{ probability }}</p>
-                </div>
-                {% endif %}
-            </div>
-        </div>
+    <!-- Optional images -->
+    <div class="row my-4">
+        <div class="col-md-4"><img src="{{ url_for('static', filename='images/image1.jpeg') }}"
+                class="img-fluid rounded" alt="health1"></div>
+        <div class="col-md-4"><img src="{{ url_for('static', filename='images/image2.jpeg') }}"
+                class="img-fluid rounded" alt="health2"></div>
+        <div class="col-md-4"><img src="{{ url_for('static', filename='images/image3.jpeg') }}"
+                class="img-fluid rounded" alt="health3"></div>
     </div>
 
-</body>
-
-</html>
+    <!-- CTA Section -->
+    <section class="bg-light p-5 mt-5 rounded">
+        <h2>Prêt à découvrir votre score de risque ?</h2>
+        <p>Utilisez notre outil basé sur l'IA pour prédire votre risque de maladie cardiaque.</p>
+        <a href="/index2" class="btn btn-danger btn-lg mt-3">Commencer la prédiction</a>
+    </section>
+    <section class="bg-light p-5 mt-5 rounded">
+        <h2>Prêt à découvrir votre score de risque ?</h2>
+        <p>Utilisez notre outil basé sur l'IA pour prédire votre risque de maladie cardiaque.</p>
+        <a href="/index2" class="btn btn-danger btn-lg mt-3">Commencer la prédiction</a>
+    </section>
+    <section class="bg-light p-5 mt-5 rounded">
+        <h2>Prêt à découvrir votre score de risque ?</h2>
+        <p>Utilisez notre outil basé sur l'IA pour prédire votre risque de maladie cardiaque.</p>
+        <a href="/index2" class="btn btn-danger btn-lg mt-3">Commencer la prédiction</a>
+    </section>
+</div>
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+{% endblock %}

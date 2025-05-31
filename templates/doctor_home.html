@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Docteur</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/doctor_home.css')}}">
+</head>
+
+<body>
+    <img class="image-gradient" src="{{ url_for('static', filename='images/gradient.png') }}">
+    <div class="layet-blur"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
+
+            <nav class="navbar_header">
+                <a href="#"><b>ACCUEIL</b></a>
+                <a href="#"><b>PRÉDIRE</b></a>
+                <a href="#"><b>RÉSULTAT</b></a>
+                <a href="{{ url_for('logout') }}" class="btn-signing"><b>SE DÉCONNECTER</b></a>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <div class="content text-center">
+                <h2 class="text-light">Bienvenue Dr. {{ user }}</h2>
+                <p class="description">Utilisez notre outil intelligent pour prédire les risques de maladies
+                    cardiaques chez vos patients.</p>
+                <div class="buttons">
+                    <a href="{{ url_for('index2')}}" class="btn-get-started">Commencer</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

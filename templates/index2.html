@@ -1,52 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Heart Disease Prediction</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prédiction HeartCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}" />
+    <style>
+        /* On ajoute quelques styles pour coller à ton thème */
+        body {
+            background: #121212;
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 25px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px 25px;
+        }
+
+        label {
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            background: #222;
+            color: #eee;
+            font-weight: 600;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            grid-column: span 2;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #084ec7;
+        }
+
+        .result {
+            grid-column: span 2;
+            margin-top: 25px;
+            padding: 15px;
+            background: #222;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .probability {
+            color: #0dcaf0;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
 
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Heart Disease Prediction Form</h2>
-        <form method="POST" action="/predict" class="shadow p-4 bg-white rounded">
-            <div class="mb-3">
-                <label for="cp" class="form-label">Chest Pain Type (cp)</label>
-                <input type="number" class="form-control" name="cp" id="cp" min="0" max="3" required>
-            </div>
-            <div class="mb-3">
-                <label for="thalach" class="form-label">Maximum Heart Rate (thalach)</label>
-                <input type="number" class="form-control" name="thalach" id="thalach" required>
-            </div>
-            <div class="mb-3">
-                <label for="ca" class="form-label">Number of Major Vessels (ca)</label>
-                <input type="number" class="form-control" name="ca" id="ca" min="0" max="3" required>
-            </div>
-            <div class="mb-3">
-                <label for="oldpeak" class="form-label">ST Depression (oldpeak)</label>
-                <input type="number" step="0.1" class="form-control" name="oldpeak" id="oldpeak" required>
-            </div>
-            <div class="mb-3">
-                <label for="thal" class="form-label">Thalassemia (thal)</label>
-                <input type="number" class="form-control" name="thal" id="thal" min="0" max="3" required>
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control" name="age" id="age" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Predict</button>
-        </form>
-        {% if result %}
-        <div class="alert alert-info mt-4">
-            <h4>{{ result }}</h4>
-            <p>Probability: {{ probability }}</p>
-        </div>
-        {% endif %}
-    </div>
-    </div>
+            <nav class="navbar_header">
+                <a href="#"><b>ACCUEIL</b></a>
+                <a href="#"><b>PRÉDIRE</b></a>
+                <a href="#"><b>RÉSULTAT</b></a>
+                <a href="{{ url_for('logout') }}" class="btn-signing"><b>SE DÉCONNECTER</b></a>
+            </nav>
+        </header>
+        <main>
+            <h2>Prédiction du Risque Cardiaque</h2>
+            <form method="POST" action="{{ url_for('index2') }}">
+                <div>
+                    <label for="age">Âge</label>
+                    <input type="number" id="age" name="age" min="1" max="120" required />
+                </div>
 
+                <div>
+                    <label for="sex">Sexe (1 = Homme, 0 = Femme)</label>
+                    <select id="sex" name="sex" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="1">Homme</option>
+                        <option value="0">Femme</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="cp">Type de douleur thoracique (cp)</label>
+                    <select id="cp" name="cp" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="0">Typique angineuse</option>
+                        <option value="1">Atypique angineuse</option>
+                        <option value="2">Douleur non-angineuse</option>
+                        <option value="3">Asymptomatique</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="trestbps">Tension artérielle au repos (trestbps)</label>
+                    <input type="number" id="trestbps" name="trestbps" required />
+                </div>
+
+                <div>
+                    <label for="chol">Cholestérol sérique (chol)</label>
+                    <input type="number" id="chol" name="chol" required />
+                </div>
+
+                <div>
+                    <label for="fbs">Glycémie à jeun > 120 mg/dl (fbs)</label>
+                    <select id="fbs" name="fbs" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="restecg">Résultat électrocardiographique au repos (restecg)</label>
+                    <select id="restecg" name="restecg" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="0">Normal</option>
+                        <option value="1">Anomalie de l’onde ST-T</option>
+                        <option value="2">Hypertrophie ventriculaire gauche probable ou certaine</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="thalach">Fréquence cardiaque maximale atteinte (thalach)</label>
+                    <input type="number" id="thalach" name="thalach" required />
+                </div>
+
+                <div>
+                    <label for="exang">Angine induite par l'exercice (exang)</label>
+                    <select id="exang" name="exang" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="oldpeak">Dépression ST induite par l'exercice (oldpeak)</label>
+                    <input type="number" id="oldpeak" name="oldpeak" step="0.1" required />
+                </div>
+
+                <div>
+                    <label for="slope">Pente du segment ST (slope)</label>
+                    <select id="slope" name="slope" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="0">Pente ascendante</option>
+                        <option value="1">Pente plate</option>
+                        <option value="2">Pente descendante</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="ca">Nombre de vaisseaux majeurs colorés (ca)</label>
+                    <select id="ca" name="ca" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="thal">Thalassémie (thal)</label>
+                    <select id="thal" name="thal" required>
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Défaut fixe</option>
+                        <option value="3">Défaut réversible</option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Prédire" />
+            </form>
+
+            {% if result %}
+            <div class="result">
+                {{ result }} <br />
+                <span class="probability">Probabilité : {{ probability }}</span>
+            </div>
+            {% endif %}
+        </main>
+    </div>
 </body>
 
 </html>

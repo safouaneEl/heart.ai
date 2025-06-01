@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Heart.AI</title>
+
+    <!-- Google Fonts + FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Style personnalisé -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style2.css')}}">
+</head>
+<style>
+    body {
+        font-size: 18px;
+        /* taille de base plus grande */
+        line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-size: 1.6em;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 1rem;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+        font-size: 1.1em;
+    }
+
+    .btn-get-started {
+        font-size: 1.1em;
+        padding: 0.75rem 1.5rem;
+    }
+</style>
+
+<body>
+
+    <div class="layer-blur"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
+
+            <nav class="navbar_header">
+                <a href="{{ url_for('doctor_home') }}"><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
+                <a href="{{ url_for('index2') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
+                <a href="{{ url_for('results') }}"><i class="fas fa-file-medical-alt"></i> <b>RÉSULTAT</b></a>
+                <a href="{{ url_for('contact_after_login') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i>
+                    <b>CONTACTEZ-NOUS</b></a>
+                <a href="{{ url_for('logout') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i> <b>SE
+                        DÉCONNECTER</b></a>
+            </nav>
+
+        </header>
+
+        <!-- Section Contact -->
+        <section class="contact-section" style="margin-top: 12rem;">
+            <div class="section-content">
+                <h2><i class="contact bi-envelope-fill"></i> Contactez-nous</h2>
+                <p>Une question ou un besoin ? Écrivez-nous directement :</p>
+
+                <form class="contact-form" action="{{url_for('contact_login')}}" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-get-started">Envoyer</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Coordonnées de contact -->
+        <section class="features-section" style="margin-top: 5rem;">
+            <h2><i class="bi bi-geo-alt-fill"></i> Coordonnées</h2>
+            <div class="features-container">
+                <div class="feature-box">
+                    <i class="bi bi-geo-alt-fill" style="font-size: 2rem; color: #6f42c1;"></i>
+                    <h3>Adresse</h3>
+                    <p>123 AI Street, Smart City, ML 45678</p>
+                </div>
+                <div class="feature-box">
+                    <i class="bi bi-envelope-fill" style="font-size: 2rem; color: #6f42c1;"></i>
+                    <h3>Email</h3>
+                    <p>contact@heartai.com</p>
+                </div>
+                <div class="feature-box">
+                    <i class="bi bi-telephone-fill" style="font-size: 2rem; color: #6f42c1;"></i>
+                    <h3>Téléphone</h3>
+                    <p>+1 (234) 567-8900</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p class="">© 2025 Heart.AI. Tous droits réservés.</p>
+                <small>Créé dans le cadre d’un stage d’intelligence artificielle et développement web.</small>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

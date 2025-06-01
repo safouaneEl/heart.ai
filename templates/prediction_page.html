@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Prédiction HeartCare</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_home.css') }}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* On ajoute quelques styles pour coller à ton thème */
         body {
@@ -97,15 +100,23 @@
             <h1 class="logo"><b>heart.ai</b></h1>
 
             <nav class="navbar_header">
-                <a href="#"><b>ACCUEIL</b></a>
-                <a href="#"><b>PRÉDIRE</b></a>
-                <a href="#"><b>RÉSULTAT</b></a>
-                <a href="{{ url_for('logout') }}" class="btn-signing"><b>SE DÉCONNECTER</b></a>
+                <a href="{{ url_for('doctor_home') }}"><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
+                <a href="{{ url_for('index2') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
+                <a href="{{ url_for('results') }}"><i class="fas fa-file-medical-alt"></i> <b>RÉSULTAT</b></a>
+                <a href="{{ url_for('contact_after_login') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i>
+                    <b>CONTACTEZ-NOUS</b></a>
+                <a href="{{ url_for('logout') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i> <b>SE
+                        DÉCONNECTER</b></a>
             </nav>
+
         </header>
         <main>
             <h2>Prédiction du Risque Cardiaque</h2>
             <form method="POST" action="{{ url_for('index2') }}">
+                <div>
+                    <label for="patient_name">Nom complet</label>
+                    <input type="text" id="patient_name" name="patient_name" required />
+                </div>
                 <div>
                     <label for="age">Âge</label>
                     <input type="number" id="age" name="age" min="1" max="120" required />
@@ -221,6 +232,13 @@
             {% endif %}
         </main>
     </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <h1 class="logo">heart.ai</h1>
+            <p class="email"><i class="fas fa-envelope"></i> contact@heart.ai</p>
+            <p class="copyright">&copy; 2025 heart.ai — Tous droits réservés.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -17,7 +17,7 @@ body {
     top : 0;
     right : 0; 
     opacity : 0.5;
-    z-index: -1; 
+    z-index: 10; 
 }
 
 .layer-blur{
@@ -41,15 +41,29 @@ body {
     /* z-index: 0; */
 }
 
-header{
+/* header{
     display : flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5rem;
     z-index: 10;
     position: relative;
-}
+} */
 
+header {
+    position: fixed;              /* rend le header fixe */
+    top: 0;                       /* colle le header tout en haut */
+    left: 0;
+    width: 100%;                  /* occupe toute la largeur */
+    z-index: 1000;                /* reste au-dessus de tout */
+    background-color: #000000cc;  /* fond semi-transparent (ou adapte) */
+    backdrop-filter: blur(10px);  /* effet de flou derrière */
+    padding: 1rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* ombre subtile */
+}
 header h1{
     margin: 0;
     font-size: 3rem ;
@@ -112,8 +126,10 @@ nav a:hover {
     gap: 0.5rem; /* Adjust spacing as needed */
 }
 
-
-
+::selection{
+  background: purple;
+  color: #fff;
+}
 /* main content  */
 
 main{
@@ -121,7 +137,7 @@ main{
     flex-direction: column;
     justify-content: center;
     min-height: calc(90hv - 6rem);
-    margin-top: 6rem;
+    margin-top: 10rem;
 }
 
 .content{
@@ -259,6 +275,7 @@ h2 {
     top : 3px;
     right : -30%;
     
+    
 }
 
 .feature-box i {
@@ -274,16 +291,22 @@ h2 {
     text-align: center;
 }
 
+
 .section-content {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.about-section h2,
-.contact-section h2 {
+.about-section h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #e0b3ff;
+}
+
+.contact-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #e0b3ff !important;
 }
 
 .about-section p,
@@ -319,7 +342,51 @@ h2 {
     text-decoration: underline;
 }
 
-/* .navbar_header{
-    position: absolute;
-    z-index: 1;
-} */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+.contact-form .form-group {
+    width: 100%;
+    max-width: 500px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #bbbbbb;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    margin-top: 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111; /* ou la couleur sombre que vous utilisez */
+    color: #fff;
+}
+
+footer p {
+    margin: 0;
+}

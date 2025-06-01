@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Heart.AI</title>
+
+    <!-- Google Fonts + FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Style personnalisé -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/about_us.css')}}">
+
+</head>
+
+
+
+<body>
+
+    <div class="layer-blur"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
+
+            <nav class="navbar_header">
+                <a href="{{url_for('index3')}}" class=""><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
+                <a href="{{url_for('about_us')}}" class=""><i class="fas fa-users"></i> <b>À PROPOS DE NOUS</b></a>
+                <a href="{{url_for('contact_page')}}"><i class="fas fa-envelope"></i> <b>CONTACTEZ NOUS</b></a>
+            </nav>
+
+            <div class="btn-group">
+                <a href="{{ url_for('signup')}}" class="btn-signing">
+                    <i class="fas fa-handshake"></i> <b>Se contacter</b>
+                </a>
+                <a href="#" class="btn-signing">
+                    <i class="fas fa-envelope-open-text"></i> <b>Contactez-nous</b>
+                </a>
+            </div>
+        </header>
+        <main class="content">
+            <section class="about-section">
+                <h2>Notre Projet</h2>
+                <p>
+                    Cette application a été développée dans le cadre d’un projet de stage de fin d’étude,
+                    en deuxième année à l’École Supérieure de Technologie.
+                    Le projet a été réalisé au Centre Hospitalier Universitaire (CHU) d’Oujda.
+                </p>
+            </section>
+
+            <section class="about-section">
+                <h2>Objectif</h2>
+                <p>
+                    L’objectif de cette application est d’apporter une solution numérique efficace
+                    pour améliorer la gestion de données médicales, faciliter les consultations
+                    et optimiser les services au sein du CHU.
+                </p>
+            </section>
+
+            <section class="about-section">
+                <h2>Notre Équipe</h2>
+                <p>
+                    Le projet a été mené par des étudiants passionnés d’informatique, souhaitant mettre en pratique
+                    leurs compétences en développement web, base de données, et gestion de projets informatiques.
+                </p>
+            </section>
+        </main>
+        <footer class="">
+            <div class="container">
+                <p class="">© 2025 HeartCare Predictor. Tous droits réservés.</p>
+                <small>Créé dans le cadre d’un stage d’intelligence artificielle et développement web.</small>
+            </div>
+        </footer>
+
+</body>
+
+</html>

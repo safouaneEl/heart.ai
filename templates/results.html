@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Docteur</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/doctor_home.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <img class="image-gradient" src="{{ url_for('static', filename='images/gradient.png') }}">
+    <div class="layer-blur"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
+
+            <nav class="navbar_header">
+                <a href="{{ url_for('doctor_home') }}"><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
+                <a href="{{ url_for('index2') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
+                <a href="{{ url_for('results') }}"><i class="fas fa-file-medical-alt"></i> <b>RÉSULTAT</b></a>
+                <a href="{{ url_for('contact_after_login') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i>
+                    <b>CONTACTEZ-NOUS</b></a>
+                <a href="{{ url_for('logout') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i> <b>SE
+                        DÉCONNECTER</b></a>
+            </nav>
+
+        </header>
+
+        <!-- Historique -->
+        <div class="container py-4">
+            <h2 class="text-light mb-4" style="text-align: center;">Historique des prédictions :</h2>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Âge</th>
+                        <th>Sexe</th>
+                        <th>Résultat</th>
+                        <th>Probabilité</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in results %}
+                    <tr>
+                        <td>{{ row.patient }}</td>
+                        <td>{{ row.age }}</td>
+                        <td>{{ row.sex }}</td>
+                        <td style="color: {{ row.color }};"><strong>{{ row.prediction_result }}</strong></td>
+                        <td>{{ row.probability }}</td>
+                        <td>{{ row.prediction_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- ANALYSES VISUELLES -->
+            <div style="margin-top: 3rem; text-align: center;">
+                <h2 style="color: #ffffff; font-size: 28px; margin-bottom: 2rem;">Analyse Visuelle</h2>
+                <canvas id="riskChart" height="100"></canvas>
+                <p class="chart-label fade-in" style="color: yellow; margin-bottom: 2rem; font-size: 30px;"> <i
+                        class="fas fa-heartbeat"></i>Répartition
+                    des risques</p>
+                <canvas id="sexChart" height="100" style="margin-top: 2rem;"></canvas>
+                <p class="chart-label fade-in" style="color: yellow; margin-bottom: 2rem; font-size: 30px"><i
+                        class="fas fa-venus-mars"></i>Répartition
+                    par sexe</p>
+                <canvas id="ageChart" height="100" style="margin-top: 2rem;"></canvas>
+                <p class="chart-label fade-in" style="color: yellow; margin-bottom: 2rem; font-size: 30px"><i
+                        class="fas fa-user-clock"></i>Distribution
+                    des âges</p>
+                <canvas id="timelineChart" height="100" style="margin-top: 2rem;"></canvas>
+                <p class="chart-label fade-in" style="color:yellow; margin-bottom: 2rem; font-size: 30px;"><i
+                        class="fas fa-calendar-alt"></i>Évolution des
+                    probabilités dans le temps
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const riskData = {{ risk_data | tojson }};
+        const sexData = {{ sex_data | tojson }};
+        const ageData = {{ age_data | tojson }};
+        const timelineData = {{ timeline_data | tojson }};
+
+        // Graphique Risques
+        new Chart(document.getElementById('riskChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Low Risk', 'High Risk'],
+                datasets: [{
+                    label: 'Risques',
+                    data: [riskData.low, riskData.high],
+                    backgroundColor: ['#4caf50', '#f44336'],
+                    borderColor: '#333',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { labels: { color: '#e7e7e7' } }
+                }
+            }
+        });
+
+        // Graphique Sexe
+        new Chart(document.getElementById('sexChart'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(sexData),
+                datasets: [{
+                    label: 'Nombre de patients',
+                    data: Object.values(sexData),
+                    backgroundColor: ['#42a5f5', '#ce93d8'],
+                    borderColor: '#222',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: {
+                        ticks: { color: '#e7e7e7' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    },
+                    y: {
+                        ticks: { color: '#e7e7e7' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    }
+                }
+            }
+        });
+
+        // Graphique Âges
+        new Chart(document.getElementById('ageChart'), {
+            type: 'bar',
+            data: {
+                labels: ageData.map((_, i) => `#${i + 1}`),
+                datasets: [{
+                    label: 'Âges des patients',
+                    data: ageData,
+                    backgroundColor: '#ffca28',
+                    borderColor: '#333',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: {
+                        ticks: { color: '#e7e7e7' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    },
+                    y: {
+                        ticks: { color: '#e7e7e7' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    }
+                }
+            }
+        });
+
+        // Graphique Timeline des Probabilités
+        new Chart(document.getElementById('timelineChart'), {
+            type: 'line',
+            data: {
+                labels: timelineData.dates,
+                datasets: [{
+                    label: 'Probabilité de risque (%)',
+                    data: timelineData.risks,
+                    fill: false,
+                    borderColor: '#03a9f4',
+                    tension: 0.2,
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        ticks: { color: '#e7e7e7' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    },
+                    y: {
+                        ticks: { color: '#e7e7e7' },
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#e7e7e7' } }
+                }
+            }
+        });
+    </script>
+    <footer class="footer">
+        <div class="footer-content">
+            <h1 class="logo">heart.ai</h1>
+            <p class="email"><i class="fas fa-envelope"></i> contact@heart.ai</p>
+            <p class="copyright">&copy; 2025 heart.ai — Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

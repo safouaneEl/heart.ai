@@ -1,4 +1,4 @@
-*{
+ *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -41,14 +41,7 @@ body {
     /* z-index: 0; */
 }
 
-/* header{
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5rem;
-    z-index: 10;
-    position: relative;
-} */
+
 header {
     position: sticky;              /* rend le header fixe */
     top: 0;                       /* colle le header tout en haut */
@@ -496,4 +489,127 @@ body {
 .footer .copyright {
     font-size: 0.85rem;
     opacity: 0.7;
+}
+
+.profile-sidebar {
+    position: fixed;
+    right: -420px;
+    top: 100px;
+    width: 400px;
+    height: calc(100% - 100px);
+    background: linear-gradient(to bottom right, #1a1a1a, #2a2a2a);
+    color: #fff;
+    padding: 2rem;
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px 0 0 20px;
+    backdrop-filter: blur(6px);
+}
+
+.profile-sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #d8a9ff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #fa4299;
+}
+
+.sidebar-content p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #e7e7e7;
+}
+
+.sidebar-content strong {
+    color: #c28cff;
+    display: inline-block;
+    width: 140px;
+}
+
+.sidebar-content a.btn-get-started {
+    margin-top: 2rem;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 5rem auto;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    animation: fadeInUp 1s ease;
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #e0b3ff;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #1a1a1a;
+    color: white;
+    outline: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus {
+    background-color: #252525;
+    box-shadow: 0 0 10px rgba(250, 66, 153, 0.4);
+}
+
+form .btn-get-started {
+    width: 100%;
+    margin-top: 1rem;
 }

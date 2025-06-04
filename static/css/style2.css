@@ -19,6 +19,14 @@ body {
     opacity : 0.5;
     z-index: 10; 
 }
+.logo-link {
+    text-decoration: none; /* Supprime le soulignement */
+}
+
+.logo-link .logo {
+    color: white;   
+}
+
 
 .layer-blur{
     height: 0;
@@ -41,14 +49,7 @@ body {
     /* z-index: 0; */
 }
 
-/* header{
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5rem;
-    z-index: 10;
-    position: relative;
-} */
+
 
 header {
     position: fixed;              /* rend le header fixe */
@@ -380,13 +381,55 @@ h2 {
     margin-top: 1rem;
 }
 
-footer {
+.footer {
+    background-color: #111;
+    color: #fff;
+    padding: 30px 0;
     text-align: center;
-    padding: 20px;
-    background-color: #111; /* ou la couleur sombre que vous utilisez */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo .logo {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500; /* au lieu de "bold" */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', sans-serif;
+    /* font-style: italic; */
+    opacity: 0.9;
+}
+
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
     color: #fff;
 }
 
-footer p {
-    margin: 0;
+.footer-text p,
+.footer-text small {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #aaa;
 }

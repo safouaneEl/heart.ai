@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fr" dir="ltr">
 
 <head>
     <meta charset="utf-8">
-    <title>Login and Registration Form in HTML | CodingNepal</title>
+    <title>Formulaire de Connexion et d'Inscription</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/signup.css')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -12,76 +12,86 @@
     <p class="legend">heart.ai</p>
     <div class="wrapper">
         <div class="title-text">
-
             <div class="title login">
-                Login Form
+                Connexion
             </div>
             <div class="title signup">
-                Signup Form
+                Inscription
             </div>
         </div>
         <div class="form-container">
             <div class="slide-controls">
                 <input type="radio" name="slide" id="login" checked>
                 <input type="radio" name="slide" id="signup">
-                <label for="login" class="slide login">Login</label>
-                <label for="signup" class="slide signup">Signup</label>
+                <label for="login" class="slide login">Connexion</label>
+                <label for="signup" class="slide signup">Inscription</label>
                 <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
+                <!-- Formulaire de connexion -->
                 <form action="{{ url_for('login') }}" method="POST" class="login">
                     <div class="field">
-                        <input type="text" name="email" placeholder="Email Address" required>
+                        <input type="email" name="email" placeholder="Adresse e-mail" required>
                     </div>
                     <div class="field">
-                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Mot de passe" required>
                     </div>
                     <div class="pass-link">
-                        <a href="#">Forgot password?</a>
+                        <a href="#">Mot de passe oublié ?</a>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Se connecter">
                     </div>
                     <div class="signup-link">
-                        Don't have an account? <a href="">Signup now</a><br>or<br> <a
-                            href="{{ url_for('index3')}}">retrun to the home page</a>
+                        Pas encore de compte ? <a href="">S'inscrire maintenant</a><br>ou<br> <a
+                            href="{{ url_for('index3')}}">Retour à la page d'accueil</a>
                     </div>
                 </form>
+                <!-- Zone pour afficher une erreur
+                <div id="loginError" style="color:red; margin-top: 10px;"></div> -->
+
+                <!-- Formulaire d'inscription -->
                 <form action="{{ url_for('signup') }}" method="POST" class="signup">
                     <div class="field">
-                        <input type="text" name="fullname" placeholder="Nom Complet" required>
+                        <input type="text" name="fullname" placeholder="Nom complet" required>
                     </div>
                     <div class="field">
-                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="email" name="email" placeholder="Adresse e-mail" required>
                     </div>
                     <div class="field">
                         <input type="date" name="birthdate" placeholder="Date de naissance" required>
                     </div>
                     <div class="field">
-                        <input type="text" name="specialite" placeholder="Specialite" required>
+                        <input type="text" name="specialite" placeholder="Spécialité" required>
                     </div>
                     <div class="field">
-                        <input type="password" name="password" placeholder="Mot de pass" required>
+                        <input type="password" name="password" placeholder="Mot de passe" required>
                     </div>
                     <div class="field">
-                        <input type="password" name="confirm_password" placeholder="Confirmer le mot de pass" required>
+                        <input type="password" name="confirm_password" placeholder="Confirmer le mot de passe" required>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input type="submit" value="Signup">
+                        <input type="submit" value="S'inscrire">
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
+    {% if login_error %}
+    <script>
+        alert("{{ login_error }}");
+        document.querySelector('form.login').reset();
+    </script>
+    {% endif %}
     <script>
         const loginText = document.querySelector(".title-text .login");
         const loginForm = document.querySelector("form.login");
         const loginBtn = document.querySelector("label.login");
         const signupBtn = document.querySelector("label.signup");
         const signupLink = document.querySelector("form .signup-link a");
+
         signupBtn.onclick = (() => {
             loginForm.style.marginLeft = "-50%";
             loginText.style.marginLeft = "-50%";

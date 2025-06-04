@@ -52,7 +52,7 @@
 
             <nav class="navbar_header">
                 <a href="{{ url_for('doctor_home') }}"><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
-                <a href="{{ url_for('index2') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
+                <a href="{{ url_for('prediction_page') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
                 <a href="{{ url_for('results') }}"><i class="fas fa-file-medical-alt"></i> <b>RÉSULTAT</b></a>
                 <a href="{{ url_for('contact_after_login') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i>
                     <b>CONTACTEZ-NOUS</b></a>
@@ -105,6 +105,29 @@
             </div>
         </section>
 
+
+        <aside id="profileSidebar" class="profile-sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-user-md"></i> Profil du médecin</h3>
+                <button class="close-btn" onclick="toggleProfileSidebar()">&times;</button>
+            </div>
+
+            <div class="sidebar-content">
+                <p><strong>Nom complet :</strong> {{ doctor.fullname }}</p>
+                <p><strong>Email :</strong> {{ doctor.email }}</p>
+                <p><strong>Naissance :</strong> {{ doctor.birthdate }}</p>
+                <p><strong>Spécialité :</strong> {{ doctor.specialite }}</p>
+
+                <a href="{{ url_for('show_edit') }}" class="btn-get-started">Modifier le profil</a>
+            </div>
+        </aside>
+
+        <script>
+            function toggleProfileSidebar() {
+                const sidebar = document.getElementById("profileSidebar");
+                sidebar.classList.toggle("active");
+            }
+        </script>
         <!-- Footer -->
         <footer>
             <div class="container">

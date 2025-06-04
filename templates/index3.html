@@ -18,8 +18,9 @@
 
     <div class="container">
         <header>
-            <h1 class="logo"><b>heart.ai</b></h1>
-
+            <a href="/index3" class="logo-link">
+                <h1 class="logo"><b>heart.ai</b></h1>
+            </a>
             <nav class="navbar_header">
                 <a href="{{url_for('index3')}}" class=""><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
                 <a href="{{url_for('about_us')}}" class=""><i class="fas fa-users"></i> <b>À PROPOS DE NOUS</b></a>
@@ -28,7 +29,7 @@
 
             <div class="btn-group">
                 <a href="{{ url_for('signup')}}" class="btn-signing">
-                    <i class="fas fa-handshake"></i> <b>Se contacter</b>
+                    <i class="fas fa-handshake"></i> <b>Se connecter</b>
                 </a>
                 <a href="{{url_for('contact_page')}}" class="btn-signing">
                     <i class="fas fa-envelope-open-text"></i> <b>Contactez-nous</b>
@@ -112,10 +113,22 @@
     </section>
 
 
-    <footer class="">
-        <div class="container">
-            <p class="">© 2025 HeartCare Predictor. Tous droits réservés.</p>
-            <small>Créé dans le cadre d’un stage d’intelligence artificielle et développement web.</small>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="/index3" class="logo-link">
+                    <h2 class="logo"><b>heart.ai</b></h2>
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="{{ url_for('index3') }}"><i class="fas fa-home"></i> Accueil</a>
+                <a href="{{ url_for('about_us') }}"><i class="fas fa-users"></i> À propos</a>
+                <a href="{{ url_for('contact_page') }}"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <div class="footer-text">
+                <p>© 2025 HeartCare Predictor. Tous droits réservés.</p>
+                <small>Créé dans le cadre d’un stage d’intelligence artificielle et développement web</small>
+            </div>
         </div>
     </footer>
 

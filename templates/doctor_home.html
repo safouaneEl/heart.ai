@@ -11,9 +11,6 @@
 </head>
 
 <body>
-    <!-- <img class="image-gradient" src="{{ url_for('static', filename='images/gradient.png') }}">
-    <div class="layer-blur"></div> -->
-
     <div class="container">
         <!-- HEADER -->
         <header>
@@ -21,23 +18,32 @@
 
             <nav class="navbar_header">
                 <a href="{{ url_for('doctor_home') }}"><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
-                <a href="{{ url_for('index2') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
+                <a href="{{ url_for('prediction_page') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
                 <a href="{{ url_for('results') }}"><i class="fas fa-file-medical-alt"></i> <b>RÉSULTAT</b></a>
-                <a href="{{ url_for('contact_after_login') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i>
-                    <b>CONTACTEZ-NOUS</b></a>
-                <a href="{{ url_for('logout') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i> <b>SE
-                        DÉCONNECTER</b></a>
-            </nav>
 
+                <!-- ✅ PROFILE BUTTON (TRIGGERS SIDEBAR) -->
+                <a href="#" onclick="toggleProfileSidebar()" class="btn-signing">
+                    <i class="fas fa-user"></i> <b>PROFIL</b>
+                </a>
+
+                <a href="{{ url_for('contact_after_login') }}" class="btn-signing">
+                    <i class="fas fa-envelope"></i> <b>CONTACTEZ-NOUS</b>
+                </a>
+
+                <a href="{{ url_for('logout') }}" class="btn-signing">
+                    <i class="fas fa-sign-out-alt"></i> <b>SE DÉCONNECTER</b>
+                </a>
+            </nav>
         </header>
+
         <!-- MAIN CONTENT -->
         <main>
             <div class="content text-center">
-                <h2 class="text-light">Bienvenue Dr. {{ user }}</h2>
+                <h2 class="text-light">Bienvenue Dr. {{ doctor.fullname }}</h2>
                 <p class="description">Utilisez notre outil intelligent pour prédire les risques de maladies
                     cardiaques chez vos patients.</p>
                 <div class="buttons">
-                    <a href="{{ url_for('index2')}}" class="btn-get-started">Commencer</a>
+                    <a href="{{ url_for('prediction_page')}}" class="btn-get-started">Commencer</a>
                 </div>
             </div>
         </main>
@@ -59,6 +65,32 @@
             <p class="copyright">&copy; 2025 heart.ai — Tous droits réservés.</p>
         </div>
     </footer>
+    <!-- Profile Sidebar Toggle Button -->
+
+
+    <aside id="profileSidebar" class="profile-sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-user-md"></i> Profil du médecin</h3>
+            <button class="close-btn" onclick="toggleProfileSidebar()">&times;</button>
+        </div>
+
+        <div class="sidebar-content">
+            <p><strong>Nom complet :</strong> {{ doctor.fullname }}</p>
+            <p><strong>Email :</strong> {{ doctor.email }}</p>
+            <p><strong>Naissance :</strong> {{ doctor.birthdate }}</p>
+            <p><strong>Spécialité :</strong> {{ doctor.specialite }}</p>
+
+            <a href="{{ url_for('show_edit') }}" class="btn-get-started">Modifier le profil</a>
+        </div>
+    </aside>
+
+    <script>
+        function toggleProfileSidebar() {
+            const sidebar = document.getElementById("profileSidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
 
 </body>
 

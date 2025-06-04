@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Profil</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/doctor_home.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo"><b>heart.ai</b></h1>
+            <nav class="navbar_header">
+                <a href="{{ url_for('doctor_home') }}"><i class="fas fa-home"></i> <b>ACCUEIL</b></a>
+                <a href="{{ url_for('prediction_page') }}"><i class="fas fa-stethoscope"></i> <b>PRÉDIRE</b></a>
+                <a href="{{ url_for('results') }}"><i class="fas fa-file-medical-alt"></i> <b>RÉSULTAT</b></a>
+                <a href="{{ url_for('contact_after_login') }}" class="btn-signing"><i class="fas fa-envelope"></i>
+                    <b>CONTACTEZ-NOUS</b></a>
+                <a href="{{ url_for('logout') }}" class="btn-signing"><i class="fas fa-sign-out-alt"></i> <b>SE
+                        DÉCONNECTER</b></a>
+            </nav>
+        </header>
+
+        <div class="form-container">
+            <h2>Modifier votre profil</h2>
+            <form action="{{ url_for('edit') }}" method="post">
+                <input type="text" name="fullname" value="{{ doctor.fullname }}" placeholder="Nom complet"><br>
+                <input type="date" name="birthdate" value="{{ doctor.birthdate }}"><br>
+                <input type="text" name="specialite" value="{{ doctor.specialite }}" placeholder="Spécialité"><br>
+                <input type="submit" value="Mettre à jour">
+            </form>
+            <hr><br>
+            <h2>Modifier l'e-mail</h2>
+            <form method="POST" action="{{url_for('edit_email')}}">
+                <label>Nouvel e-mail :</label><br>
+                <input type="email" name="new_email" value="{{ doctor.email }}"><br><br>
+
+                <label>Mot de passe actuel :</label><br>
+                <input type="password" name="password"><br><br>
+
+                <input type="submit" value="Mettre à jour l'e-mail">
+            </form>
+
+
+            <hr><br>
+
+            <h2>Modifier le mot de passe</h2>
+            <form method="POST" action="{{url_for('edit_password')}}">
+                <label>Mot de passe actuel :</label><br>
+                <input type="password" name="current_password"><br><br>
+
+                <label>Nouveau mot de passe :</label><br>
+                <input type="password" name="new_password"><br><br>
+
+                <label>Confirmer le nouveau mot de passe :</label><br>
+                <input type="password" name="confirm_password"><br><br>
+
+                <input type="submit" value="Changer le mot de passe">
+            </form>
+            {% if error %}
+            <p style="color:red; text-align: center;"><b>{{ error }}</b></p>
+            {% elif success %}
+            <p style="color:green; text-align: center;"><b>{{ success }}</b></p>
+            {% endif %}
+
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer-content">
+                <h1 class="logo">heart.ai</h1>
+                <p class="email"><i class="fas fa-envelope"></i> contact@heart.ai</p>
+                <p class="copyright">&copy; 2025 heart.ai — Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -13,71 +13,84 @@ body {
 }
 
 header {
-    position: fixed;
-    top: 0;
+    position: fixed;              /* rend le header fixe */
+    top: 0;                       /* colle le header tout en haut */
     left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #000000cc;
-    backdrop-filter: blur(10px);
+    width: 100%;                  /* occupe toute la largeur */
+    z-index: 1000;                /* reste au-dessus de tout */
+    background-color: #000000cc;  /* fond semi-transparent (ou adapte) */
+    backdrop-filter: blur(10px);  /* effet de flou derrière */
     padding: 1rem 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* ombre subtile */
 }
-
-header h1 {
-    font-size: 2.5rem;
+header h1{
+    margin: 0;
+    font-size: 3rem ;
     font-weight: 300;
 }
 
 nav {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    gap : 3rem;
+    margin-left: -5%;
+    
 }
 
 nav a {
     font-size: 1rem;
-    letter-spacing: 0.05rem;
-    text-decoration: none;
-    color: inherit;
+    letter-spacing: 0.1rem;
     transition: color 0.2s;
+    text-decoration: none;
+    color : inherit;
 }
 
 nav a:hover {
-    color: #a7a7a7;
-}
-
-.btn-group {
-    display: flex;
-    gap: 0.5rem;
+    color : #a7a7a7;
 }
 
 .btn-signing {
-    text-decoration: none;
+    display: inline-block;        /* make <a> behave like a button */
+    text-decoration: none;        /* remove underline */
+    text-align: center;           /* center text inside */
+    background-color: #a7a7a7;
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    cursor: pointer;
     background: linear-gradient(to right, #a445b2, #fa4299, #a445b2, #fa4299);
     background-size: 200%;
     animation: animationGradient 2.5s linear infinite;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.95rem;
-    font-weight: 500;
+    z-index: 1;
+    overflow: hidden;
     border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .btn-signing:hover {
     background-color: white;
-    color: #000;
+    color: #000000;
 }
 
 @keyframes animationGradient {
     to {
         background-position: 200%;
     }
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem; /* Adjust spacing as needed */
+}
+
+::selection{
+  background: purple;
+  color: #fff;
 }
 
 .layer-blur {
@@ -125,9 +138,64 @@ main.content {
     line-height: 1.6;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
+
+.footer {
     background-color: #111;
     color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo .logo {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500; /* au lieu de "bold" */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', sans-serif;
+    /* font-style: italic; */
+    opacity: 0.9;
+}
+
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.footer-text p,
+.footer-text small {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.logo-link {
+    text-decoration: none; /* Supprime le soulignement */
+}
+
+.logo-link .logo {
+    color: white;   
 }

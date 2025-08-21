@@ -11,19 +11,23 @@ import numpy as np
 import joblib
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Establish a connection to the MySQL database
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="2025MYSQLs@f",
-    database="heart_ai"
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
 cursor = db.cursor()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Secret key for sessions
+app.secret_key = os.getenv("FLASK_SECRET", os.urandom(24))
 
 model = joblib.load("model/heart_model.pkl")
 model2 = joblib.load("model/heart_model_reduced.pkl")

@@ -31,5 +31,6 @@ It’s more of a learning/experimental build than something I’m proud to deplo
 
 1. Clone this repo:
    ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
+   git clone https://github.com/safouaneEl/heart.ai
+   cd heart.ai
+   
